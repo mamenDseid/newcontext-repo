@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
@@ -14,9 +14,12 @@ import { useAuthUser } from "@react-query-firebase/auth";
 import { auth } from '../firebase-config';
 import { Avatar } from 'react-native-paper';
 import FeedTwo from '../components/FeedTwo';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Tab = createMaterialBottomTabNavigator();
 export default function MyTabs() {
+    const {storedCredentials, setStoredCredentials} = useContext(CredentialsContext)
+const {userName, email, lastSeen, profilePic, uid, uniName}= storedCredentials
     const user = useAuthUser(["user"], auth);
     return (
         <Tab.Navigator
@@ -79,11 +82,11 @@ export default function MyTabs() {
                       <Tab.Screen
                 name="Profile"
                 component={ProfileScreen}
-                initialParams={{userId: user.data.uid, username: user.data.displayName}}
+                initialParams={{userId: uid, username: userName}}
                 options={{
                     tabBarLabel: false,
                     tabBarIcon: ({ color }) => (
-                        <Avatar.Image size={26} source={{uri: `${user.data.photoURL}`}}/>
+                        <Avatar.Image size={26} source={{uri: `${profilePic}`}}/>
                     ),
                 }}
             />
