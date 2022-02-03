@@ -77,7 +77,7 @@ export default function FeedScreen() {
   }
 
   if (loading) {
-    return <ActivityIndicator />;
+    return <ActivityIndicator size="large" color="green"/>;
   }
 
   return (

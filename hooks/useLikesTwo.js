@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import {
   collection,
   where,
@@ -11,7 +11,7 @@ import {
   getDoc
 } from "@firebase/firestore";
 import { db, auth } from '../firebase-config';
-
+import {CredentialsContext} from "../components/CredentialsContext"
 import { useAuthUser } from "@react-query-firebase/auth";
 export default function useLikesTwo(id) {
   const user = useAuthUser(["user"], auth);
@@ -21,14 +21,15 @@ export default function useLikesTwo(id) {
   const [isliked, setisLiked] = useState(false);
   const [sposts, setsposts] = useState([]);
   const [comments, setComments] = useState([]);
-
+  const {storedCredentials, setStoredCredentials} = useContext(CredentialsContext)
+  const {userName, email, lastSeen, profilePic, uid, uniName}= storedCredentials
   const savePost = useCallback(async () => {
     if (hasSaved) {
-      await deleteDoc(doc(db, "users", user.data.uid, "savedposts", id));
+      await deleteDoc(doc(db, "users", uid, "savedposts", id));
     } else {
       const theDoc = await getDoc(doc(db, "feeds", id));
 
-      await setDoc(doc(db, "users", user.data.uid, "savedposts", id), {
+      await setDoc(doc(db, "users", uid, "savedposts", id), {
         id: id,
         username: theDoc.data().username,
         profilePic: theDoc.data().profilePic,
