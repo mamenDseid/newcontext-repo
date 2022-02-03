@@ -12,7 +12,7 @@ import {
 } from "@firebase/firestore";
 import { db, auth } from '../firebase-config';
 import {CredentialsContext} from "../components/CredentialsContext"
-import { useAuthUser } from "@react-query-firebase/auth";
+//import { useAuthUser } from "@react-query-firebase/auth";
 export default function useLikesTwo(id) {
 
   const [likes, setLikes] = useState([]);
@@ -51,6 +51,7 @@ export default function useLikesTwo(id) {
       });
     }
   }, [uid, userName, id, hasLiked]);
+  
   const handleLikedDoble = () => {
     setisLiked(true);
     setTimeout(() => {

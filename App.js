@@ -6,7 +6,7 @@ import RootNavigation from './screens/RootNavigation';
 import {CredentialsContext} from "./components/CredentialsContext"
  import AppLoading from "expo-app-loading"
 
- const queryClient = new QueryClient()
+ 
 
 export default function App() {
  const [appReady, setAppReady] = useState(false)

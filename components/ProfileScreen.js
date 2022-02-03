@@ -8,7 +8,7 @@ export default function ProfileScreen({ route, navigation }) {
 
   return (
     <>
-      <StatusBar backgroundColor="default" />
+      <StatusBar backgroundColor="#3700B3" barStyle="light-content"  />
       <SafeAreaView>
         <ProfileHeader userId={userId} username={username} />
 
