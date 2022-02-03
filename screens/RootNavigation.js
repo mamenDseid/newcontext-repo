@@ -1,22 +1,25 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import MyTabs from './MyTabs';
 import Login from './Login';
-import { useAuthUser } from "@react-query-firebase/auth";
+
 import HomeScreen from './HomeScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { auth } from '../firebase-config';
-
+import {CredentialsContext} from "../components/CredentialsContext"
 
 const Stack = createNativeStackNavigator();
 export default function RootNavigation() {
-    const user = useAuthUser(["user"], auth);
+ 
+    
     return (
-        <NavigationContainer>
+        <CredentialsContext.Consumer>
+        {({storedCredentials})=> (
+    <NavigationContainer>
             <Stack.Navigator >
-                {user.data ? (
+                {storedCredentials ? (
                     <>
 
                         <Stack.Screen name="Tabs" component={MyTabs} options={{ headerShown: false }} />
@@ -28,6 +31,10 @@ export default function RootNavigation() {
 
             </Stack.Navigator>
         </NavigationContainer>
+    
+    )}
+        </CredentialsContext.Consumer>
+        
     );
 }
 
