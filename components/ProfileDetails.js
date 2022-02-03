@@ -11,26 +11,28 @@ import { CredentialsContext } from './CredentialsContext';
 import React, { useContext } from 'react';
 import useGetuserDetail from '../hooks/useGetuserDetail';
 
-export default function ProfileDetails({userId, username}) {
-    const  {feeds, follow, following} = useGetuserDetail(userId)
-    
+export default function ProfileDetails({ userId, username }) {
+    const { feeds, follow, following } = useGetuserDetail(userId)
+
     return (
         <View style={styles.conte}>
             <View style={styles.wrapper}>
                 <View style={{ alignItems: "center" }}>
-                    <Text style={{ fontWeight: "bold", fontSize: 14 }}>8</Text>
+                    <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+                        {feeds.length}
+                    </Text>
                     <Text>posts</Text>
                 </View>
-                <View>
-                    <TouchableOpacity>
-                        <Text style={{ fontWeight: "bold", fontSize: 14 }}>5</Text>
+                <View style={{ alignItems: "center" }}>
+                    <TouchableOpacity style={{ alignItems: "center" }}>
+                        <Text style={{ fontWeight: "bold", fontSize: 16 }}>{follow.length}</Text>
                         <Text>followers</Text>
                     </TouchableOpacity>
                 </View>
                 <View>
 
-                    <TouchableOpacity>
-                        <Text style={{ fontWeight: "bold", fontSize: 14 }}>4</Text>
+                    <TouchableOpacity style={{ alignItems: "center" }}>
+                        <Text style={{ fontWeight: "bold", fontSize: 16 }}>{following.length} </Text>
                         <Text>following</Text>
                     </TouchableOpacity>
                 </View>
