@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as Google from 'expo-google-app-auth';
 import { GoogleAuthProvider, signInWithCredential, getAuth } from '@firebase/auth';
 import {CredentialsContext} from "../components/CredentialsContext"
-import { useAuthUser } from "@react-query-firebase/auth";
+
 import { auth } from '../firebase-config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
