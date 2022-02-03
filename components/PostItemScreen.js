@@ -85,7 +85,8 @@ export default function PostItemScreen({ id, postPic, caption, username, uid, pr
 
     navigation.navigate('Profile', {
       userId: uid,
-      username: username
+      username: username,
+      userProfilePic: profilePic
     });
 
 

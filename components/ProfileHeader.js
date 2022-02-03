@@ -24,16 +24,16 @@ export default function ProfileHeader({ userId, username }) {
     //const user = useAuthUser(["user"], auth);
     const {storedCredentials, setStoredCredentials} = useContext(CredentialsContext)
     const {userName, email, lastSeen, profilePic, uid, uniName}= storedCredentials
-
+    const navigation = useNavigation();
     const isTrue = userId === uid
 
     const handleGoback = () => {
-        console.log("goback");
+        navigation.goBack()
     }
     return (
         <View style={{marginTop: 20}}>
             <View style={styles.wrapper}>
-                <TouchableOpacity onPress={isTrue ? "" : handleGoback} >
+                <TouchableOpacity onPress={isTrue ? undefined : handleGoback} >
                     {isTrue ? (
                         <>
                             <Feather name="settings" size={24} color="black" />
