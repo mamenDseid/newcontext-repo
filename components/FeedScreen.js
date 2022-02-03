@@ -70,7 +70,7 @@ export default function FeedScreen() {
     const snapshot = await getDocs(q)
     await updateState(snapshot)
   };
-  console.log(zdata)
+  console.log(zdata, "zzzz")
   const handlePress = () => {
     console.log("press triggerd");
     alert("triggred")

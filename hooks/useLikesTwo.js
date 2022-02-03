@@ -24,7 +24,7 @@ export default function useLikesTwo(id) {
   const {storedCredentials, setStoredCredentials} = useContext(CredentialsContext)
   const {userName, email, lastSeen, profilePic, uid, uniName}= storedCredentials
 
-  
+
   const savePost = useCallback(async () => {
     if (hasSaved) {
       await deleteDoc(doc(db, "users", uid, "savedposts", id));
@@ -46,11 +46,11 @@ export default function useLikesTwo(id) {
   const likeDoble = useCallback(async () => {
     if (hasLiked) return;
     else {
-      await setDoc(doc(db, "feeds", id, "likes", user.data.uid), {
-        username: user.data.displayName
+      await setDoc(doc(db, "feeds", id, "likes", uid), {
+        username: userName
       });
     }
-  }, [user.data.uid, user.data.displayName, id, hasLiked]);
+  }, [uid, userName, id, hasLiked]);
   const handleLikedDoble = () => {
     setisLiked(true);
     setTimeout(() => {
@@ -60,13 +60,13 @@ export default function useLikesTwo(id) {
   };
   const likePost = useCallback(async () => {
     if (hasLiked) {
-      await deleteDoc(doc(db, "feeds", id, "likes", user.data.uid));
+      await deleteDoc(doc(db, "feeds", id, "likes", uid));
     } else {
-      await setDoc(doc(db, "feeds", id, "likes", user.data.uid), {
-        username: user.data.displayName
+      await setDoc(doc(db, "feeds", id, "likes", uid), {
+        username: userName
       });
     }
-  }, [id, hasLiked, uid, user.data.displayName]);
+  }, [id, hasLiked, uid, userName]);
   const getPostDetails = useCallback(() => {
     const commentsRef = query(
       collection(db, "feeds", id, "comments"),
