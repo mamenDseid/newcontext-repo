@@ -31,7 +31,7 @@ export default function ProfileHeader({ userId, username }) {
         console.log("goback");
     }
     return (
-        <View>
+        <View style={{marginTop: 20}}>
             <View style={styles.wrapper}>
                 <TouchableOpacity onPress={isTrue ? "" : handleGoback} >
                     {isTrue ? (
@@ -40,11 +40,11 @@ export default function ProfileHeader({ userId, username }) {
                         </>
                     ) : (
                         <>
-                            <Ionicons name="arrow-back" size={24} color="black" />
+                            <Ionicons name="arrow-back" size={29} color="black" />
                         </>)}
                 </TouchableOpacity>
 
-                <Text style={{ fontWeight: "bold", fontSize: 12 }}>{username} </Text>
+                <Text style={{ fontWeight: "bold", fontSize: 16 }}>{username} </Text>
 
                 <TouchableOpacity>
                     {isTrue ? (
