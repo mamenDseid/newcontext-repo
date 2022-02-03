@@ -1,9 +1,9 @@
 import { StyleSheet, ActivityIndicator, Text, View, TouchableOpacity, Image } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import * as Google from 'expo-google-app-auth';
 import { GoogleAuthProvider, signInWithCredential, getAuth } from '@firebase/auth';
-
+import {CredentialsContext} from "../components/CredentialsContext"
 import { useAuthUser } from "@react-query-firebase/auth";
 import { auth } from '../firebase-config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -11,13 +11,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Login() {
     const navigation = useNavigation();
     const [loading, setLoading] = useState(false)
-    const user = useAuthUser(["user"], auth);
+    const {storedCredentials, setStoredCredentials} = useContext(CredentialsContext)
 
 
     const handleStore = async (value) => {
         try {
             const jsonValue = JSON.stringify(value)
             await AsyncStorage.setItem('user', jsonValue)
+            setStoredCredentials(value)
             navigation.navigate("Tabs")
 
 
@@ -69,19 +70,19 @@ export default function Login() {
 
 
 
-    useEffect(() => {
-        if (user.data) {
-            navigation.navigate("Tabs")
-        }
-    }, [])
+//     useEffect(() => {
+//         if (user.data) {
+//             navigation.navigate("Tabs")
+//         }
+//     }, [])
 
-    if (user.isLoading) {
-        return (
-            <View style={styles.container}>
-                <Text>Loading....</Text>
-            </View>
-        )
-    }
+//     if (user.isLoading) {
+//         return (
+//             <View style={styles.container}>
+//                 <Text>Loading....</Text>
+//             </View>
+//         )
+//     }
 
 
     return (
