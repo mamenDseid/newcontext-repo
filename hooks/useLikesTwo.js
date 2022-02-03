@@ -68,6 +68,8 @@ export default function useLikesTwo(id) {
       });
     }
   }, [id, hasLiked, uid, userName]);
+
+  
   const getPostDetails = useCallback(() => {
     const commentsRef = query(
       collection(db, "feeds", id, "comments"),

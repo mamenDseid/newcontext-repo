@@ -10,15 +10,32 @@ import {
 import { CredentialsContext } from './CredentialsContext';
 import React, { useContext } from 'react';
 
-export default function ProfileDetails() {
-  return (
-    <View style={styles.conte}>
-         <View style={styles.wrapper}>
+export default function ProfileDetails({userId, username}) {
+    return (
+        <View style={styles.conte}>
+            <View style={styles.wrapper}>
+                <View style={{ alignItems: "center" }}>
+                    <Text style={{ fontWeight: "bold", fontSize: 14 }}>8</Text>
+                    <Text>posts</Text>
+                </View>
+                <View>
+                    <TouchableOpacity>
+                        <Text style={{ fontWeight: "bold", fontSize: 14 }}>5</Text>
+                        <Text>followers</Text>
+                    </TouchableOpacity>
+                </View>
+                <View>
+
+                    <TouchableOpacity>
+                        <Text style={{ fontWeight: "bold", fontSize: 14 }}>4</Text>
+                        <Text>following</Text>
+                    </TouchableOpacity>
+                </View>
 
 
-         </View>
-    </View>
-  );
+            </View>
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
