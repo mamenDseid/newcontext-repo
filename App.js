@@ -3,7 +3,7 @@ import React,{useState} from 'react';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RootNavigation from './screens/RootNavigation';
-
+import {CredentialsContext} from "./components/CredentialsContext"
  import AppLoading from "expo-app-loading"
 
  const queryClient = new QueryClient()
@@ -31,11 +31,11 @@ onError={console.warn}
   )
  }
   return (
-    <QueryClientProvider client={queryClient}>
+    <CredentialsContext.Provider value={{storedCredentials, setStoredCredentials}}>
 
        <RootNavigation />
 
-     </QueryClientProvider>
+     </CredentialsContext.Provider>
   );
 }
 
