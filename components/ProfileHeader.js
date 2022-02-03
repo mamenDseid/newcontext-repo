@@ -25,7 +25,7 @@ export default function ProfileHeader({ userId, username }) {
     const {storedCredentials, setStoredCredentials} = useContext(CredentialsContext)
     const {userName, email, lastSeen, profilePic, uid, uniName}= storedCredentials
 
-    const isTrue = userId === user.data.uid
+    const isTrue = userId === uid
 
     const handleGoback = () => {
         console.log("goback");
