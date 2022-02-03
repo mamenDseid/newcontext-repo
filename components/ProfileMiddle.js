@@ -28,7 +28,19 @@ export default function ProfileMiddle({ userId, username, userProfilePic }) {
 
                 <View style={styles.leftWrapper}>
 
-                    <Text> {username} </Text>
+                    <Text style={{ fontSize: 18 }}> {username} </Text>
+                    <View style={{ marginTop: 5, alignItems: "center" }}>
+                        {isTrue ? (
+                            <TouchableOpacity>
+                                <Text style={{ fontWeight: "bold", fontSize: 14 }}>edit profile</Text>
+                            </TouchableOpacity>
+                        ) : (
+                            <TouchableOpacity>
+
+                                <Text>follow</Text>
+                            </TouchableOpacity>
+                        )}
+                    </View>
                 </View>
             </View>
         </View>
@@ -38,7 +50,7 @@ export default function ProfileMiddle({ userId, username, userProfilePic }) {
 const styles = StyleSheet.create({
     leftWrapper: {
 
-        marginLeft: 10
+        marginLeft: 15
 
     },
     conte: {
@@ -54,7 +66,7 @@ const styles = StyleSheet.create({
     wrapper: {
         marginHorizontal: 30,
         flexDirection: "row",
-        justifyContent: "space-between",
+        justifyContent: "center",
         alignItems: "center"
 
     }

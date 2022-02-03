@@ -1,14 +1,10 @@
 
 import React, {useContext} from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { useAuthUser } from "@react-query-firebase/auth";
-import { auth } from '../firebase-config';
+
 import { Ionicons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 
-/*
-
- */
 import {
     StyleSheet,
     Text,
