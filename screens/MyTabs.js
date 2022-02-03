@@ -15,12 +15,13 @@ import { auth } from '../firebase-config';
 import { Avatar } from 'react-native-paper';
 import FeedTwo from '../components/FeedTwo';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {CredentialsContext} from '../components/CredentialsContext'
 
 const Tab = createMaterialBottomTabNavigator();
 export default function MyTabs() {
     const {storedCredentials, setStoredCredentials} = useContext(CredentialsContext)
 const {userName, email, lastSeen, profilePic, uid, uniName}= storedCredentials
-    const user = useAuthUser(["user"], auth);
+   //r const user = useAuthUser(["user"], auth);
     return (
         <Tab.Navigator
             screenOptions={{

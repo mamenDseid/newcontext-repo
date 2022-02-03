@@ -10,7 +10,7 @@ export default function ProfileScreen({ route, navigation }) {
     <>
       <StatusBar backgroundColor="default" />
       <SafeAreaView>
-        <ProfileHeader uid={userId} username={username} />
+        <ProfileHeader userId={userId} username={username} />
 
 
       </SafeAreaView>

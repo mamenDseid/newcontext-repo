@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {useContext} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useAuthUser } from "@react-query-firebase/auth";
 import { auth } from '../firebase-config';
@@ -7,9 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 
 /*
- <Feather name="settings" size={24} color="black" />
-<Ionicons name="arrow-back" size={24} color="black" />
-<Ionicons name="person-add" size={24} color="black" />
+
  */
 import {
     StyleSheet,
@@ -20,10 +18,14 @@ import {
     Animated,
     Dimensions,
 } from 'react-native';
+import { CredentialsContext } from './CredentialsContext';
 
-export default function ProfileHeader({ uid, username }) {
-    const user = useAuthUser(["user"], auth);
-    const isTrue = uid === user.data.uid
+export default function ProfileHeader({ userId, username }) {
+    //const user = useAuthUser(["user"], auth);
+    const {storedCredentials, setStoredCredentials} = useContext(CredentialsContext)
+    const {userName, email, lastSeen, profilePic, uid, uniName}= storedCredentials
+
+    const isTrue = userId === user.data.uid
 
     const handleGoback = () => {
         console.log("goback");
