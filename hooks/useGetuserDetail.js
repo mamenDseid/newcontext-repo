@@ -26,21 +26,14 @@ const followingRef = query(collection(db, "users", id, "followingF"),orderBy("ti
 onSnapshot(feedRef, (querySnap)=> {
   const thefeeds = []
   const sortedfeeds = []
-  querySnap.forEach((doc)=> {
-    thefeeds.push({
-      ...doc.data(),
-      key: doc.id
-    })
-     //sortedfeeds = thefeeds.sort((a,b)=> (b.timestamp - a.timestamp))
-  setFeeds(thefeeds)
-  })
+
  
-    // setFeeds(querySnap.docs.map((doc)=> {
-    //     return {
-    //         id: doc.id,
-    //         data: doc.data()
-    //       };
-    // }))
+    setFeeds(querySnap.docs.map((doc)=> {
+        return {
+            id: doc.id,
+            data: doc.data()
+          };
+    }))
 })
 onSnapshot(followRef, (querySnap)=> {
     setFollow(querySnap.docs.map((doc)=> {

@@ -14,10 +14,10 @@ export default function ProfileScreen({ route, navigation }) {
       <SafeAreaView>
         <ProfileHeader userId={userId} username={username} />
         <ProfileMiddle userId={userId} username={username} userProfilePic={userProfilePic} />
-
       </SafeAreaView>
-      <View style={{marginTop: 25}}/>
-<TabViewNav  />  
+
+<ProfileDetails userId={userId} username={username}      />
+  
     </>
   );
 }

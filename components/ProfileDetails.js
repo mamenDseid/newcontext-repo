@@ -11,6 +11,7 @@ import { CredentialsContext } from './CredentialsContext';
 import React, { useContext } from 'react';
 import useGetuserDetail from '../hooks/useGetuserDetail';
 import ProfileTabsContent from './ProfileTabsContent';
+import TabViewNav from './TabViewNav';
 
 export default function ProfileDetails({ userId, username }) {
     const { feeds, follow, following } = useGetuserDetail(userId)
@@ -42,14 +43,15 @@ export default function ProfileDetails({ userId, username }) {
 
             </View>
         </View>
-        <ProfileTabsContent  userId={userId} feeds={feeds} />
+        <TabViewNav userId={userId} feeds={feeds && feeds}  />
         </>
     );
 }
 
 const styles = StyleSheet.create({
     conte: {
-        marginTop: 25
+        marginTop: 25,
+        marginBottom: 20
     },
     wrapper: {
         marginHorizontal: 20,
