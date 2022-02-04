@@ -10,11 +10,13 @@ import {
 import { CredentialsContext } from './CredentialsContext';
 import React, { useContext } from 'react';
 import useGetuserDetail from '../hooks/useGetuserDetail';
+import ProfileTabsContent from './ProfileTabsContent';
 
 export default function ProfileDetails({ userId, username }) {
     const { feeds, follow, following } = useGetuserDetail(userId)
 
     return (
+        <>
         <View style={styles.conte}>
             <View style={styles.wrapper}>
                 <View style={{ alignItems: "center" }}>
@@ -40,6 +42,8 @@ export default function ProfileDetails({ userId, username }) {
 
             </View>
         </View>
+        <ProfileTabsContent/>
+        </>
     );
 }
 
