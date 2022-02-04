@@ -42,7 +42,7 @@ export default function ProfileDetails({ userId, username }) {
 
             </View>
         </View>
-        <ProfileTabsContent/>
+        <ProfileTabsContent  userId={userId} feeds={feeds} />
         </>
     );
 }

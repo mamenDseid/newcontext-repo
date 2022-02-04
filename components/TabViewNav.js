@@ -1,21 +1,13 @@
-import { StyleSheet, Text, View, Image, StatusBar, SafeAreaView, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
-import React, { useState, useContext } from 'react';
-import { Tab, TabView } from 'react-native-elements';
-import { CredentialsContext } from './CredentialsContext';
+import React from 'react';
+import { Tab, Text, TabView } from 'react-native-elements';
 
 
 
-export default function ProfileTabsContent({ userId, feeds }) {
-    const [index, setIndex] = useState(0)
-    const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext)
-    const { userName, email, lastSeen, profilePic, uid, uniName } = storedCredentials
-    console.log(feeds);
+export default () => {
+    const [index, setIndex] = React.useState(0);
 
-    const isTrue = userId === uid
     return (
         <>
-        <View style={styles.conte}>
-
             <Tab
                 value={index}
                 onChange={(e) => setIndex(e)}
@@ -26,13 +18,11 @@ export default function ProfileTabsContent({ userId, feeds }) {
                 variant="#F5F5F5"
             >
                 <Tab.Item
-
                     titleStyle={{ fontSize: 12 }}
 
                     icon={{ name: 'grid-view', type: 'materialIcons', color: 'black' }}
                 />
                 <Tab.Item
-
                     titleStyle={{ fontSize: 12 }}
                     icon={{ name: 'view-carousel', type: 'materialIcons', color: 'black' }}
                 />
@@ -48,31 +38,21 @@ export default function ProfileTabsContent({ userId, feeds }) {
                     icon={{ name: "person-circle", type: 'ionicon', color: 'black' }}
                 />
             </Tab>
-            <TabView value={index} onChange={setIndex} animationType="spring">
 
+            <TabView value={index} onChange={setIndex} animationType="spring">
                 <TabView.Item style={{ backgroundColor: 'red', width: '100%' }}>
                     <Text h1>Recent</Text>
                 </TabView.Item>
                 <TabView.Item style={{ backgroundColor: 'blue', width: '100%' }}>
                     <Text h1>Favorite</Text>
                 </TabView.Item>
-                <TabView.Item style={{ backgroundColor: 'green', width: '100%' }}>
-                    <Text h1>Cart</Text>
+                <TabView.Item style={{ backgroundColor: 'black', width: '100%' }}>
+                    <Text h1>Favorite</Text>
                 </TabView.Item>
                 <TabView.Item style={{ backgroundColor: 'green', width: '100%' }}>
                     <Text h1>Cart</Text>
                 </TabView.Item>
-
-
             </TabView>
-        </View>
         </>
-    )
-}
-
-const styles = StyleSheet.create({
-
-    conte: {
-        marginTop: 25
-    }
-});
+    );
+};

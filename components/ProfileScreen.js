@@ -4,7 +4,7 @@ import { Avatar } from 'react-native-paper';
 import ProfileHeader from './ProfileHeader';
 import ProfileMiddle from './ProfileMiddle';
 import ProfileDetails from './ProfileDetails';
-
+import TabViewNav from './TabViewNav';
 export default function ProfileScreen({ route, navigation }) {
   const { userId, username, userProfilePic } = route.params
 
@@ -14,9 +14,10 @@ export default function ProfileScreen({ route, navigation }) {
       <SafeAreaView>
         <ProfileHeader userId={userId} username={username} />
         <ProfileMiddle userId={userId} username={username} userProfilePic={userProfilePic} />
-<ProfileDetails userId={userId} username={username}  />
-      </SafeAreaView>
 
+      </SafeAreaView>
+      <View style={{marginTop: 25}}/>
+<TabViewNav  />  
     </>
   );
 }
