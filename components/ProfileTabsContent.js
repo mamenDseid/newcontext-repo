@@ -7,7 +7,7 @@ import { Tab, TabView } from 'react-native-elements';
 export default function ProfileTabsContent() {
     const [index, setIndex] = useState(0)
 
-
+//<Ionicons name="person-circle" size={24} color="black" />
     return (
         <View style={styles.conte}>
 
@@ -24,17 +24,22 @@ export default function ProfileTabsContent() {
                    
                     titleStyle={{ fontSize: 12 }}
 
-                    icon={{ name: 'dashboard', type: 'materialIcons', color: 'black' }}
+                    icon={{ name: 'grid-view', type: 'materialIcons', color: 'black' }}
                 />
                 <Tab.Item
                     
                     titleStyle={{ fontSize: 12 }}
-                    icon={{ name: 'heart', type: 'ionicon', color: 'black' }}
+                    icon={{ name: 'view-carousel', type: 'materialIcons', color: 'black' }}
+                />
+                 <Tab.Item
+                    
+                    titleStyle={{ fontSize: 12 }}
+                    icon={{ name: "bookmark", type: 'fontawsome', color: 'black' }}
                 />
                 <Tab.Item
                     
                     titleStyle={{ fontSize: 12 }}
-                    icon={{ name: 'cart', type: 'ionicon', color: 'black' }}
+                    icon={{ name: "person-circle", type: 'ionicon', color: 'black' }}
                 />
             </Tab>
         </View>
