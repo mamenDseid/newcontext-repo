@@ -20,14 +20,26 @@ import useGetuserDetail from '../hooks/useGetuserDetail';
 
 function HomeGrid({ feeds }) {
     return (
-        <View>
+        <View style={{ alignItems: "center", justifyContent: "center" }}>
             {feeds.length === 0 ? (
                 <View style={{ alignItems: "center", justifyContent: "center" }}>
                     <Text>No feeds yet </Text>
                 </View>
             ) : (
                 <>
-                    <FlatList data={feeds} numColumns={3}
+                    <FlatList data={feeds} 
+                    ItemSeparatorComponent={
+                        Platform.OS !== 'android' &&
+                        (({ highlighted }) => (
+                          <View
+                            style={[
+                              style.separator,
+                              highlighted && { marginLeft: 0 , alignItems: "center", justifyContent: "space-between"}
+                            ]}
+                          />
+                        ))
+                      }
+                    numColumns={3}
                         renderItem={({ item }) => (
                             <TouchableOpacity>
                                 <Image style={{ width: 100, height: 100, margin: 5 }} source={{ uri: `${item.data.image}` }} />
@@ -52,10 +64,33 @@ function HomeItem() {
     )
 }
 
-function SavedGrid() {
+function SavedGrid({savedPosts}) {
     return (
-        <View>
+        <View style={{ alignItems: "center", justifyContent: "center" }}>
             <Text>saved item</Text>
+
+            <View>
+
+                {savedPosts.length === 0?(
+                    <Text>no saved items yet</Text>
+                ):(
+                    <>
+                    <FlatList data={savedPosts}  
+                    
+                    
+                    numColumns={3}
+                        renderItem={({ item }) => (
+                            <TouchableOpacity>
+                                <Image style={{ width: 100, height: 100, margin: 5 }} source={{ uri: `${item.data.postPic}` }} />
+                            </TouchableOpacity>
+
+                        )}
+                    
+                    
+                    />
+                    </>
+                )}
+            </View>
         </View>
     )
 }
@@ -81,7 +116,7 @@ export default function ProfileTabsContent({ userId }) {
         setToggle(index)
     }
     const getSavePosts = useCallback(() => {
-        const q = query(collection(db, "users", uid, "savedposts"));
+        const q = query(collection(db, "users", userId, "savedposts"));
         onSnapshot(q, (querySnap) => {
             setSavedPosts(querySnap.docs.map((doc) => {
                 return {
@@ -140,7 +175,7 @@ export default function ProfileTabsContent({ userId }) {
                 </TouchableOpacity>
             </View>
             <View style={{ marginTop: 10 }}>
-                {toggletab === 0 ? <HomeGrid feeds={thefeeds} /> : toggletab === 1 ? <HomeItem /> : toggletab === 2 ? <SavedGrid /> : <TaggdItem />}
+                {toggletab === 0 ? <HomeGrid feeds={thefeeds} /> : toggletab === 1 ? <HomeItem /> : toggletab === 2 ? <SavedGrid savedPosts={savedPosts}/> : <TaggdItem />}
 
             </View>
 
