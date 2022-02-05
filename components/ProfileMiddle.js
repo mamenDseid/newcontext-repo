@@ -43,11 +43,23 @@ export default function ProfileMiddle({ userId, username, userProfilePic }) {
                     </View>
                 </View>
             </View>
+
+             <View style={styles.wrapperD}>
+             
+             </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
+    wrapperD:{
+marginTop: 20,
+marginHorizontal: 20,
+ flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center"
+
+    },
     leftWrapper: {
 
         marginLeft: 15

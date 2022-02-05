@@ -65,7 +65,7 @@ export default ({ userId, feeds }) => {
             </Tab>
 
             <TabView value={index} onChange={setIndex} animationType="spring">
-                <TabView.Item style={{ backgroundColor: 'white', width: '100%', alignItems: "center" }}>
+                <TabView.Item style={{ backgroundColor: 'white', width: '100%' }}>
                     <HomeItem/>
                   
                 </TabView.Item>
