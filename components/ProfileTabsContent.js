@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
     Text, View,
     TouchableOpacity,
@@ -6,20 +6,25 @@ import {
     Dimensions
 } from 'react-native';
 import Constants from 'expo-constants';
+import { CredentialsContext } from './CredentialsContext';
 
 import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function ProfileTabsContent() {
+export default function ProfileTabsContent({userId}) {
     const [toggletab, setToggle] = useState(0)
+    const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext)
+    const { userName, email, lastSeen, profilePic, uid, uniName } = storedCredentials
 
+    const isTrue = userId === uid
 
     const tabtoogle = (index) => {
         setToggle(index)
     }
     return (
+        <>
         <View style={styles.conte}>
             <TouchableOpacity onPress={() => tabtoogle(0)} style={{ padding: 5 }}>
                 <Feather name="grid" size={24} style={toggletab === 0 ? styles.active : styles.default} />
@@ -41,6 +46,7 @@ export default function ProfileTabsContent() {
 
             </TouchableOpacity>
         </View>
+        </>
     );
 }
 
@@ -52,10 +58,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        backgroundColor: "white",
+      
         borderBottomWidth: 2,
         borderTopWidth: 2,
-        borderColor: 'rgba(158, 150, 150, .5)',
+        borderColor: 'rgba(158, 150, 150, .3)',
         
 
 
