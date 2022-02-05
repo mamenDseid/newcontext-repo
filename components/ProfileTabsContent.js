@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import {
     Text, View,
     TouchableOpacity,
-    StyleSheet
+    StyleSheet,
+    Dimensions
 } from 'react-native';
 import Constants from 'expo-constants';
 
@@ -20,35 +21,49 @@ export default function ProfileTabsContent() {
     }
     return (
         <View style={styles.conte}>
-            <TouchableOpacity onPress={()=> tabtoogle(0)} style={{padding: 5}}>
-                <Feather name="grid" size={24} color="black" />
+            <TouchableOpacity onPress={() => tabtoogle(0)} style={{ padding: 5 }}>
+                <Feather name="grid" size={24} style={toggletab === 0 ? styles.active : styles.default} />
 
             </TouchableOpacity>
 
-            <TouchableOpacity  onPress={()=> tabtoogle(1)} style={{padding: 5}}>
-                <MaterialIcons name="view-carousel" size={28} color="black" />
+            <TouchableOpacity onPress={() => tabtoogle(1)} style={{ padding: 5 }}>
+                <MaterialIcons name="view-carousel" size={28} style={toggletab === 1 ? styles.active : styles.default} />
 
             </TouchableOpacity>
-            <TouchableOpacity  onPress={()=> tabtoogle(2)} style={{padding: 5}}>
+            <TouchableOpacity onPress={() => tabtoogle(2)} style={{ padding: 5 }}>
 
-                <FontAwesome name="bookmark" size={24} color="black" />
+                <FontAwesome name="bookmark" size={24} style={toggletab === 2 ? styles.active : styles.default} />
 
 
             </TouchableOpacity>
-            <TouchableOpacity onPress={()=> tabtoogle(3)} style={{padding: 5}}>
-                <Ionicons name="person-circle-outline" size={28} color="black" />
+            <TouchableOpacity onPress={() => tabtoogle(3)} style={{ padding: 5 }}>
+                <Ionicons name="person-circle-outline" size={28} style={toggletab === 3 ? styles.active : styles.default} />
 
             </TouchableOpacity>
         </View>
     );
 }
 
+const { width: SIZE } = Dimensions.get('window');
 const styles = StyleSheet.create({
     conte: {
         marginTop: 20,
-        marginHorizontal: 20,
+       paddingHorizontal: 20,
         flexDirection: "row",
         justifyContent: "space-between",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: "white",
+        borderBottomWidth: 2,
+        borderTopWidth: 2,
+        borderColor: 'rgba(158, 150, 150, .5)',
+        
+
+
+    },
+    active: {
+        color: "#669ffa"
+    },
+    default: {
+        color: "black"
     }
 });
