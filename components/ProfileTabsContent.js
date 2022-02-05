@@ -20,22 +20,22 @@ export default function ProfileTabsContent() {
     }
     return (
         <View style={styles.conte}>
-            <TouchableOpacity onPress={()=> tabtoogle(0)}>
+            <TouchableOpacity onPress={()=> tabtoogle(0)} style={{padding: 5}}>
                 <Feather name="grid" size={24} color="black" />
 
             </TouchableOpacity>
 
-            <TouchableOpacity  onPress={()=> tabtoogle(1)}>
+            <TouchableOpacity  onPress={()=> tabtoogle(1)} style={{padding: 5}}>
                 <MaterialIcons name="view-carousel" size={24} color="black" />
 
             </TouchableOpacity>
-            <TouchableOpacity  onPress={()=> tabtoogle(2)}>
+            <TouchableOpacity  onPress={()=> tabtoogle(2)} style={{padding: 5}}>
 
                 <FontAwesome name="bookmark" size={24} color="black" />
 
 
             </TouchableOpacity>
-            <TouchableOpacity onPress={()=> tabtoogle(3)}>
+            <TouchableOpacity onPress={()=> tabtoogle(3)} style={{padding: 5}}>
                 <Ionicons name="person-circle-outline" size={24} color="black" />
 
             </TouchableOpacity>
