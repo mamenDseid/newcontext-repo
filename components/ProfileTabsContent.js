@@ -67,7 +67,7 @@ function HomeItem() {
 function SavedGrid({savedPosts}) {
     return (
         <View style={{ alignItems: "center", justifyContent: "center" }}>
-            <Text>saved item</Text>
+            <Text>you only can see these items</Text>
 
             <View>
 
@@ -138,12 +138,13 @@ export default function ProfileTabsContent({ userId }) {
         const feedRef = query(collection(db, "feeds"), where("uid" ,"==" ,userId))
 
         onSnapshot(feedRef, (querySnap)=> {
-            setThefeeds(querySnap.docs.map((doc)=> {
+            setThefeeds(querySnap.docs.sort((a,b)=> b.data().timestamp- a.data().timestamp).map((doc)=> {
                 return {
                     id: doc.id,
                     data: doc.data()
-                  };
+                  }; 
             }))
+            
         })
 
     },[userId])
