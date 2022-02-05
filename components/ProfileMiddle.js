@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { CredentialsContext } from './CredentialsContext';
 import React, { useContext } from 'react';
+import ProfileTabsContent from './ProfileTabsContent';
 
 
 export default function ProfileMiddle({ userId, username, userProfilePic }) {
