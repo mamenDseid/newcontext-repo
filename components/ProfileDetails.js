@@ -15,6 +15,10 @@ import TabViewNav from './TabViewNav';
 
 export default function ProfileDetails({ userId, username }) {
     const { feeds, follow, following } = useGetuserDetail(userId)
+    const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext)
+    const { userName, email, lastSeen, profilePic, uid, uniName } = storedCredentials
+
+    const isTrue = userId === uid;
 
     return (
         <>
@@ -43,7 +47,7 @@ export default function ProfileDetails({ userId, username }) {
 
             </View>
         </View>
-        <ProfileTabsContent userId={userId}/>
+        <ProfileTabsContent userId={userId}  feeds={feeds}/>
         </>
     );
 }

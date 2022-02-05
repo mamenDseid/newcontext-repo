@@ -1,9 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
 import {
     Text, View,
     TouchableOpacity,
     StyleSheet,
-    Dimensions
+    Dimensions,
+    FlatList,
+    Image
 } from 'react-native';
 import Constants from 'expo-constants';
 import { CredentialsContext } from './CredentialsContext';
@@ -12,17 +14,85 @@ import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import { collection, onSnapshot, query } from 'firebase/firestore';
+import { db } from '../firebase-config';
 
-export default function ProfileTabsContent({ userId }) {
+function HomeGrid({ feeds }) {
+    return (
+        <View>
+            {feeds.length === 0 ? (
+                <View style={{ alignItems: "center", justifyContent: "center" }}>
+                    <Text>No feeds yet </Text>
+                </View>
+            ) : (
+                <>
+                    <FlatList data={feeds} numColumns={3}
+                        renderItem={({ item }) => (
+                            <TouchableOpacity>
+                                <Image style={{ width: 100, height: 100, margin: 5 }} source={{ uri: `${item.data.image}` }} />
+                            </TouchableOpacity>
+
+                        )}
+
+                    />
+
+                </>
+            )}
+
+        </View>
+    )
+}
+
+function HomeItem() {
+    return (
+        <View>
+            <Text> Home item content </Text>
+        </View>
+    )
+}
+
+function SavedGrid() {
+    return (
+        <View>
+            <Text>saved item</Text>
+        </View>
+    )
+}
+
+function TaggdItem() {
+    return (
+        <View>
+            <Text>tagged item</Text>
+        </View>
+    )
+}
+
+export default function ProfileTabsContent({ userId, feeds }) {
     const [toggletab, setToggle] = useState(0)
     const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext)
     const { userName, email, lastSeen, profilePic, uid, uniName } = storedCredentials
-
+    const [savedPosts, setSavedPosts] = useState([])
     const isTrue = userId === uid;
 
     const tabtoogle = (index) => {
         setToggle(index)
     }
+    const getSavePosts = useCallback(() => {
+        const q = query(collection(db, "users", uid, "savedposts"));
+        onSnapshot(q, (querySnap) => {
+            setSavedPosts(querySnap.docs.map((doc) => {
+                return {
+                    id: doc.id,
+                    data: doc.data()
+                };
+            }))
+        })
+    }, [])
+    useEffect(() => {
+        if (isTrue) {
+            getSavePosts()
+        }
+    }, [])
     return (
         <>
             <View style={styles.conte}>
@@ -49,6 +119,10 @@ export default function ProfileTabsContent({ userId }) {
                     <Ionicons name="person-circle-outline" size={28} style={toggletab === 3 ? styles.active : styles.default} />
 
                 </TouchableOpacity>
+            </View>
+            <View style={{ marginTop: 10 }}>
+                {toggletab === 0 ? <HomeGrid feeds={feeds} /> : toggletab === 1 ? <HomeItem /> : toggletab === 2 ? <SavedGrid /> : <TaggdItem />}
+
             </View>
 
         </>
