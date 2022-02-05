@@ -17,6 +17,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { db } from '../firebase-config';
 import useGetuserDetail from '../hooks/useGetuserDetail';
+import PostItemScreen from './PostItemScreen';
 
 function HomeGrid({ feeds }) {
     return (
@@ -56,9 +57,28 @@ function HomeGrid({ feeds }) {
     )
 }
 
-function HomeItem() {
+function HomeItem({ feeds }) {
     return (
-        <View>
+        <View style={{ alignItems: "center", justifyContent: "center" }}>
+            {feeds.length === 0 ? (
+                 <View style={{ alignItems: "center", justifyContent: "center" }}>
+                 <Text>No feeds yet </Text>
+             </View>
+            ): (
+                <>
+                <FlatList
+data={feeds}
+renderItem={({ item }) => (
+    <PostItemScreen postPic={item.data.image} uid={item.data.uid} id={item.id} email={item.data.email} caption={item.data.caption} profilePic={item.data.profilePic} username={item.data.username}
+     timestamp={item.timestamp} />
+  )}
+
+
+
+                />
+                
+                </>
+            )}
             <Text> Home item content </Text>
         </View>
     )
@@ -97,7 +117,7 @@ function SavedGrid({savedPosts}) {
 
 function TaggdItem() {
     return (
-        <View>
+        <View style={{ alignItems: "center", justifyContent: "center" }}>
             <Text>tagged item</Text>
         </View>
     )
@@ -176,7 +196,7 @@ export default function ProfileTabsContent({ userId }) {
                 </TouchableOpacity>
             </View>
             <View style={{ marginTop: 10 }}>
-                {toggletab === 0 ? <HomeGrid feeds={thefeeds} /> : toggletab === 1 ? <HomeItem /> : toggletab === 2 ? <SavedGrid savedPosts={savedPosts}/> : <TaggdItem />}
+                {toggletab === 0 ? <HomeGrid feeds={thefeeds} /> : toggletab === 1 ? <HomeItem feeds={thefeeds}/> : toggletab === 2 ? <SavedGrid savedPosts={savedPosts}/> : <TaggdItem />}
 
             </View>
 
