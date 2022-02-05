@@ -7,8 +7,10 @@ import {
     Animated,
     Dimensions,
 } from 'react-native';
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import { db } from '../firebase-config';
 import { CredentialsContext } from './CredentialsContext';
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import useGetuserDetail from '../hooks/useGetuserDetail';
 import ProfileTabsContent from './ProfileTabsContent';
 import TabViewNav from './TabViewNav';
@@ -17,16 +19,29 @@ export default function ProfileDetails({ userId, username }) {
     const { feeds, follow, following } = useGetuserDetail(userId)
     const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext)
     const { userName, email, lastSeen, profilePic, uid, uniName } = storedCredentials
+    const [thefeeds, setThefeeds]= useState([])
 
     const isTrue = userId === uid;
+    useEffect(()=> {
+        const feedRef = query(collection(db, "feeds"), where("uid" ,"==" ,userId))
 
+        onSnapshot(feedRef, (querySnap)=> {
+            setThefeeds(querySnap.docs.map((doc)=> {
+                return {
+                    id: doc.id,
+                    data: doc.data()
+                  };
+            }))
+        })
+
+    },[userId])
     return (
         <>
         <View style={styles.conte}>
             <View style={styles.wrapper}>
                 <View style={{ alignItems: "center" }}>
                     <Text style={{ fontWeight: "bold", fontSize: 16 }}>
-                        {feeds.length}
+                        {thefeeds.length}
                     </Text>
                     <Text>posts</Text>
                 </View>
@@ -47,7 +62,7 @@ export default function ProfileDetails({ userId, username }) {
 
             </View>
         </View>
-        <ProfileTabsContent userId={userId}  feeds={feeds}/>
+      
         </>
     );
 }

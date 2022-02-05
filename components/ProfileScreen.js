@@ -5,6 +5,8 @@ import ProfileHeader from './ProfileHeader';
 import ProfileMiddle from './ProfileMiddle';
 import ProfileDetails from './ProfileDetails';
 import TabViewNav from './TabViewNav';
+import ProfileTabsContent from './ProfileTabsContent';
+
 export default function ProfileScreen({ route, navigation }) {
   const { userId, username, userProfilePic } = route.params
 
@@ -17,7 +19,7 @@ export default function ProfileScreen({ route, navigation }) {
       </SafeAreaView>
 
 <ProfileDetails userId={userId} username={username}      />
-  
+<ProfileTabsContent userId={userId} />
     </>
   );
 }

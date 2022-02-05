@@ -56,7 +56,7 @@ onSnapshot(followingRef, (querySnap)=> {
 
 useEffect(()=>{
     getUserDataDetails()
-},[])
+},[getUserDataDetails])
 
   return {feeds, follow, following}
 }

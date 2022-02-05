@@ -14,8 +14,9 @@ import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import { collection, onSnapshot, query } from 'firebase/firestore';
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { db } from '../firebase-config';
+import useGetuserDetail from '../hooks/useGetuserDetail';
 
 function HomeGrid({ feeds }) {
     return (
@@ -67,12 +68,14 @@ function TaggdItem() {
     )
 }
 
-export default function ProfileTabsContent({ userId, feeds }) {
+export default function ProfileTabsContent({ userId }) {
     const [toggletab, setToggle] = useState(0)
     const { storedCredentials, setStoredCredentials } = useContext(CredentialsContext)
+    const [thefeeds, setThefeeds]= useState([])
     const { userName, email, lastSeen, profilePic, uid, uniName } = storedCredentials
     const [savedPosts, setSavedPosts] = useState([])
     const isTrue = userId === uid;
+    const { feeds, follow, following } = useGetuserDetail(userId)
 
     const tabtoogle = (index) => {
         setToggle(index)
@@ -92,7 +95,23 @@ export default function ProfileTabsContent({ userId, feeds }) {
         if (isTrue) {
             getSavePosts()
         }
+
+
     }, [])
+
+    useEffect(()=> {
+        const feedRef = query(collection(db, "feeds"), where("uid" ,"==" ,userId))
+
+        onSnapshot(feedRef, (querySnap)=> {
+            setThefeeds(querySnap.docs.map((doc)=> {
+                return {
+                    id: doc.id,
+                    data: doc.data()
+                  };
+            }))
+        })
+
+    },[userId])
     return (
         <>
             <View style={styles.conte}>
@@ -121,7 +140,7 @@ export default function ProfileTabsContent({ userId, feeds }) {
                 </TouchableOpacity>
             </View>
             <View style={{ marginTop: 10 }}>
-                {toggletab === 0 ? <HomeGrid feeds={feeds} /> : toggletab === 1 ? <HomeItem /> : toggletab === 2 ? <SavedGrid /> : <TaggdItem />}
+                {toggletab === 0 ? <HomeGrid feeds={thefeeds} /> : toggletab === 1 ? <HomeItem /> : toggletab === 2 ? <SavedGrid /> : <TaggdItem />}
 
             </View>
 
