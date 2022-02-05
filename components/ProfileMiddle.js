@@ -45,7 +45,7 @@ export default function ProfileMiddle({ userId, username, userProfilePic }) {
                 </View>
             </View>
 
-             <ProfileTabsContent/>
+            
         </View>
     );
 }
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
 marginTop: 20,
 marginHorizontal: 20,
  flexDirection: "row",
-        justifyContent: "center",
+ justifyContent: "space-between",
         alignItems: "center"
 
     },

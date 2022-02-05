@@ -26,7 +26,7 @@ export default function ProfileTabsContent() {
             </TouchableOpacity>
 
             <TouchableOpacity  onPress={()=> tabtoogle(1)} style={{padding: 5}}>
-                <MaterialIcons name="view-carousel" size={24} color="black" />
+                <MaterialIcons name="view-carousel" size={28} color="black" />
 
             </TouchableOpacity>
             <TouchableOpacity  onPress={()=> tabtoogle(2)} style={{padding: 5}}>
@@ -36,7 +36,7 @@ export default function ProfileTabsContent() {
 
             </TouchableOpacity>
             <TouchableOpacity onPress={()=> tabtoogle(3)} style={{padding: 5}}>
-                <Ionicons name="person-circle-outline" size={24} color="black" />
+                <Ionicons name="person-circle-outline" size={28} color="black" />
 
             </TouchableOpacity>
         </View>
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginHorizontal: 20,
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center"
     }
 });
