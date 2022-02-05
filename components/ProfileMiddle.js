@@ -44,9 +44,7 @@ export default function ProfileMiddle({ userId, username, userProfilePic }) {
                 </View>
             </View>
 
-             <View style={styles.wrapperD}>
-             
-             </View>
+             <ProfileTabsContent/>
         </View>
     );
 }
