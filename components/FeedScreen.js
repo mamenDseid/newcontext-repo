@@ -77,7 +77,7 @@ export default function FeedScreen() {
   }
 
   if (loading) {
-    return <ActivityIndicator size="large" color="green"/>;
+    return <ActivityIndicator size="large" color="green" style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}/>;
   }
 
   return (
