@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import React, {useContext} from 'react';
 import MyTabs from './MyTabs';
 import Login from './Login';
-
+import SignInScreen from "./SignInScreen"
 import HomeScreen from './HomeScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -25,7 +25,7 @@ export default function RootNavigation() {
                         <Stack.Screen name="Tabs" component={MyTabs} options={{ headerShown: false }} />
                     </>
                 ) : (
-                    <Stack.Screen name="Login" component={Login} />
+                    <Stack.Screen name="Login" component={SignInScreen} />
 
                 )}
 
