@@ -23,14 +23,16 @@
         "googleSignIn": {
           "reservedClientId": "com.googleusercontent.apps.355903971926-l8rfvfdcbcoj2mn8d19tnm28g3r5sprq"
         }
-      }
+      },
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.instaclone.app"
+      "package": "com.instaclone.app",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"

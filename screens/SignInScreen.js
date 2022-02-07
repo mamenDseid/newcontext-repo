@@ -21,7 +21,7 @@ export default function SignInScreen() {
             await Google.initAsync({
                 clientId: Platform.OS === 'android' ? androidClientId : iosClientId
             })
-            getTheUserV()
+            getUserDetails()
         } catch (error) {
             console.log(error);
         }
@@ -31,14 +31,15 @@ export default function SignInScreen() {
     const getUserDetails = async () => {
         const user = await Google.signInSilentlyAsync()
         setLoading(false)
-        user && handleStore({
+        const data = {
             userName: user.displayName,
             email: user.email,
             lastSeen: user.lastLoginAt,
             profilePic: user.photoURL,
             uid: user.uid,
             uniName: `@${user.email.split("@")[0]}`
-        })
+        }
+        user && handleStore(data)
 
     }
 
@@ -84,7 +85,7 @@ export default function SignInScreen() {
             const { type, user } = await Google.signInAsync()
 
             if (type === 'success') {
-                getTheUserV()
+                getUserDetails()
             } else {
                 console.log("Google sign in cancelled")
                 setLoading(false)
@@ -98,6 +99,7 @@ export default function SignInScreen() {
     useEffect(() => {
         initAsync()
     })
+    
     return (
         <View style={styles.container} >
             {!loading ? (
