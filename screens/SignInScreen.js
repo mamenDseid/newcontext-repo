@@ -21,7 +21,7 @@ export default function SignInScreen() {
             await Google.initAsync({
                 clientId: Platform.OS === 'android' ? androidClientId : iosClientId
             })
-            getUserDetails()
+            getTheUserV()
         } catch (error) {
             console.log(error);
         }
@@ -30,13 +30,15 @@ export default function SignInScreen() {
 
     const getUserDetails = async () => {
         const user = await Google.signInSilentlyAsync()
-setLoading(false)
-user && handleStore({userName: user.displayName,
-    email: user.email,
-    lastSeen: user.lastLoginAt,
-    profilePic: user.photoURL,
-    uid: user.uid,
-    uniName: `@${user.email.split("@")[0]}`})
+        setLoading(false)
+        user && handleStore({
+            userName: user.displayName,
+            email: user.email,
+            lastSeen: user.lastLoginAt,
+            profilePic: user.photoURL,
+            uid: user.uid,
+            uniName: `@${user.email.split("@")[0]}`
+        })
 
     }
 
@@ -52,7 +54,29 @@ user && handleStore({userName: user.displayName,
             console.log(error)
         }
     }
- 
+
+    const getTheUserV = async ()=> {
+        const user = await Google.signInSilentlyAsync()
+        const { idToken } = user;
+        const credential = await GoogleAuthProvider.credential(idToken)
+        const authUser = await signInWithCredential(auth, credential)
+
+        if (authUser) {
+            const { user } = authUser
+            const data = {
+                userName: user.displayName,
+                email: user.email,
+                lastSeen: user.lastLoginAt,
+                profilePic: user.photoURL,
+                uid: user.uid,
+                uniName: `@${user.email.split("@")[0]}`
+            }
+            setLoading(false)
+            handleStore(data)
+        } else {
+            console.log("Permission denied");
+        }
+    }
     const handleGoogleSignin = async () => {
         try {
             setLoading(true)
@@ -60,25 +84,7 @@ user && handleStore({userName: user.displayName,
             const { type, user } = await Google.signInAsync()
 
             if (type === 'success') {
-                const { idToken } = user;
-
-                const credential = await GoogleAuthProvider.credential(idToken)
-                const authUser = await signInWithCredential(auth, credential)
-
-                if(authUser){
-                    const { user } = authUser
-                    const data = {
-                        userName: user.displayName,
-                        email: user.email,
-                        lastSeen: user.lastLoginAt,
-                        profilePic: user.photoURL,
-                        uid: user.uid,
-                        uniName: `@${user.email.split("@")[0]}`
-                    }
-                    handleStore(data)
-                }else {
-                    console.log("Permission denied");
-                }
+                getTheUserV()
             } else {
                 console.log("Google sign in cancelled")
                 setLoading(false)
@@ -86,31 +92,31 @@ user && handleStore({userName: user.displayName,
 
         } catch (error) {
             setLoading(false)
-console.log(error);
+            console.log(error);
         }
     }
-    useEffect(()=> {
+    useEffect(() => {
         initAsync()
-      })
+    })
     return (
         <View style={styles.container} >
-        {!loading ? (
-            <>
-                <Image style={{ width: 60, height: 60, marginVertical: 20 }} source={{ uri: "https://i.imgur.com/UFpDWQn.png" }} />
-                <TouchableOpacity onPress={handleGoogleSignin} style={[styles.button, { backgroundColor: '#54b72b' }]}>
-                    <Text style={{ fontSize: 17, fontWeight: '400', color: 'white' }}>Login</Text>
-                </TouchableOpacity>
-            </>
-        ) : (
-            <>
-                <Image style={{ width: 60, height: 60, marginVertical: 20 }} source={{ uri: "https://i.imgur.com/UFpDWQn.png" }} />
-                <TouchableOpacity style={[styles.button, { backgroundColor: '#54b72b' }]}>
-                    <ActivityIndicator size="large" color="white" />
-                </TouchableOpacity>
-            </>
-        )}
+            {!loading ? (
+                <>
+                    <Image style={{ width: 60, height: 60, marginVertical: 20 }} source={{ uri: "https://i.imgur.com/UFpDWQn.png" }} />
+                    <TouchableOpacity onPress={handleGoogleSignin} style={[styles.button, { backgroundColor: '#54b72b' }]}>
+                        <Text style={{ fontSize: 17, fontWeight: '400', color: 'white' }}>Login</Text>
+                    </TouchableOpacity>
+                </>
+            ) : (
+                <>
+                    <Image style={{ width: 60, height: 60, marginVertical: 20 }} source={{ uri: "https://i.imgur.com/UFpDWQn.png" }} />
+                    <TouchableOpacity style={[styles.button, { backgroundColor: '#54b72b' }]}>
+                        <ActivityIndicator size="large" color="white" />
+                    </TouchableOpacity>
+                </>
+            )}
 
-    </View>
+        </View>
     );
 }
 
