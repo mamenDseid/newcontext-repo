@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
+  "expoServerPort": 19000,
   "packagerPort": 19000,
   "packagerPid": null,
-  "expoServerNgrokUrl": "https://ix-im7.anonymous.newcontext-repo.exp.direct",
-  "packagerNgrokUrl": "https://packager.ix-im7.anonymous.newcontext-repo.exp.direct",
-  "ngrokPid": 2586,
+  "expoServerNgrokUrl": "https://ix-im7.mamendseid.newcontext-repo.exp.direct",
+  "packagerNgrokUrl": "https://packager.ix-im7.mamendseid.newcontext-repo.exp.direct",
+  "ngrokPid": 3317,
   "webpackServerPort": null
 }
