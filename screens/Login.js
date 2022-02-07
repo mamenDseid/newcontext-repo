@@ -26,9 +26,7 @@ export default function Login() {
             console.log(error)
         }
     }
-    const handleSignIn = () => {
-        navigation.navigate("Tabs")
-    }
+ 
 
     async function signin() {
         setLoading(true)
