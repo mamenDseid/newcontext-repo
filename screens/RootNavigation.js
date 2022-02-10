@@ -9,6 +9,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { auth } from '../firebase-config';
 import {CredentialsContext} from "../components/CredentialsContext"
+import SignInScreenTwo from './SignInScreenTwo';
 
 const Stack = createNativeStackNavigator();
 export default function RootNavigation() {
@@ -25,7 +26,7 @@ export default function RootNavigation() {
                         <Stack.Screen name="Tabs" component={MyTabs} options={{ headerShown: false }} />
                     </>
                 ) : (
-                    <Stack.Screen name="Login" component={SignInScreen} />
+                    <Stack.Screen name="Login" component={SignInScreenTwo} />
 
                 )}
 

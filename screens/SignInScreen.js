@@ -98,15 +98,15 @@ export default function SignInScreen() {
     }
     useEffect(() => {
         initAsync()
-    })
-    
+    },[])
+
     return (
         <View style={styles.container} >
             {!loading ? (
                 <>
                     <Image style={{ width: 60, height: 60, marginVertical: 20 }} source={{ uri: "https://i.imgur.com/UFpDWQn.png" }} />
                     <TouchableOpacity onPress={handleGoogleSignin} style={[styles.button, { backgroundColor: '#54b72b' }]}>
-                        <Text style={{ fontSize: 17, fontWeight: '400', color: 'white' }}>Login</Text>
+                        <Text style={{ fontSize: 17, fontWeight: '400', color: 'white' }}>Login V</Text>
                     </TouchableOpacity>
                 </>
             ) : (

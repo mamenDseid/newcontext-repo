@@ -71,10 +71,7 @@ export default function FeedScreen() {
     await updateState(snapshot)
   };
   console.log(zdata, "zzzz")
-  const handlePress = () => {
-    console.log("press triggerd");
-    alert("triggred")
-  }
+
 
   if (loading) {
     return <ActivityIndicator size="large" color="green" style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}/>;
