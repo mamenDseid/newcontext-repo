@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19000,
+  "expoServerPort": 8081,
+  "packagerPort": 8081,
   "packagerPid": null,
   "expoServerNgrokUrl": "https://ix-im7.mamendseid.newcontext-repo.exp.direct",
   "packagerNgrokUrl": "https://ix-im7.mamendseid.newcontext-repo.exp.direct",
-  "ngrokPid": 2544,
+  "ngrokPid": 7118,
   "webpackServerPort": null
 }

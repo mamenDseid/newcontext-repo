@@ -5,6 +5,6 @@
   "minify": false,
   "urlRandomness": "ix-im7",
   "https": false,
-  "scheme": null,
-  "devClient": false
+  "devClient": true,
+  "scheme": "exp+myproject"
 }

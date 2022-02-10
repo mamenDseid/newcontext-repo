@@ -44,7 +44,9 @@
     "react-query": "^3.34.12",
     "expo-google-sign-in": "~10.1.0",
     "expo-web-browser": "~10.1.0",
-    "expo-random": "~12.1.1"
+    "expo-random": "~12.1.1",
+    "expo-dev-client": "~0.8.4",
+    "expo-auth-session": "~3.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

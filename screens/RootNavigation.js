@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React, {useContext} from 'react';
 import MyTabs from './MyTabs';
-import Login from './Login';
-import SignInScreen from "./SignInScreen"
+//import Login from './Login';
+//import SignInScreen from "./SignInScreen"
 import HomeScreen from './HomeScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
