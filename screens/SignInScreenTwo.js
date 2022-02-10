@@ -3,9 +3,13 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { GoogleAuthProvider, signInWithCredential, getAuth } from '@firebase/auth';
 import { CredentialsContext } from "../components/CredentialsContext"
-
+import * as Google from 'expo-auth-session/providers/google';
 import { auth } from '../firebase-config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import * as WebBrowser from 'expo-web-browser';
+
+WebBrowser.maybeCompleteAuthSession();
 
 export default function SignInScreenTwo() {
     const navigation = useNavigation();
